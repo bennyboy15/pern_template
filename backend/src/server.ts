@@ -1,24 +1,25 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import errorHandler from './middleware/error.middleware';
-import userRoutes from "./routes/user.route"
+import express, { Request, Response } from "express";
+import morgan from "morgan";
+import cors from "cors";
 
-dotenv.config();
+export const createServer = () => {
+    const app = express();
+    app
+        .disable("x-powered-by")
+        .use(morgan("dev"))
+        .use(express.urlencoded({ extended: true }))
+        .use(express.json())
+        .use(cors());
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+    app.get("/health", (req: Request, res: Response) => {
+        res.json({ ok: true });
+    });
 
-// Middleware
-app.use(cors());
-app.use(express.json());
+    return app;
+};
 
-// Routes
-app.use("/api/v1/users", userRoutes);
+const server = createServer();
 
-// Global Error Handler
-app.use(errorHandler);
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+server.listen(3000, () => {
+    console.log("Server running @ localhost:3000");
+})

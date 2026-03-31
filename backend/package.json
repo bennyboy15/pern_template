@@ -1,39 +1,51 @@
 {
-  "name": "backend",
+  "name": "pern_template",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "db:push": "npx prisma db push"
+    "dev": "nodemon",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint"
+  },
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bennyboy15/pern_template.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "@prisma/adapter-pg": "^7.5.0",
-    "@prisma/client": "^7.5.0",
-    "bcrypt": "^6.0.0",
-    "cors": "^2.8.6",
-    "dotenv": "^17.3.1",
-    "express": "^5.2.1",
-    "express-rate-limit": "^8.3.1",
-    "jsonwebtoken": "^9.0.3",
-    "pg": "^8.20.0",
-    "zod": "^4.3.6"
+  "bugs": {
+    "url": "https://github.com/bennyboy15/pern_template/issues"
   },
+  "homepage": "https://github.com/bennyboy15/pern_template#readme",
   "devDependencies": {
-    "@types/bcrypt": "^6.0.0",
-    "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6",
-    "@types/jsonwebtoken": "^9.0.10",
-    "@types/node": "^25.5.0",
-    "@types/pg": "^8.20.0",
-    "prisma": "^7.5.0",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "@eslint/js": "^9.39.4",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.13",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.7.5",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jest": "^28.8.3",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^15.15.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.58.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.14"
   }
 }
