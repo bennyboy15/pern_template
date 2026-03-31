@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import morgan from "morgan";
 import cors from "cors";
+import config from "./config";
 
 export const createServer = () => {
     const app = express();
@@ -12,7 +13,7 @@ export const createServer = () => {
         .use(cors());
 
     app.get("/health", (req: Request, res: Response) => {
-        res.json({ ok: true });
+        res.json({ ok: true, environment: config.env });
     });
 
     return app;
@@ -20,6 +21,6 @@ export const createServer = () => {
 
 const server = createServer();
 
-server.listen(3000, () => {
-    console.log("Server running @ localhost:3000");
+server.listen(config.port, () => {
+    console.log(`Server running @ port:${config.port}`);
 })
