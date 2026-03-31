@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import config from "./config";
 import v1 from "./routes/v1";
+import errorHandler from "./middlware/error-handler";
 
 export const createServer = () => {
     const app = express();
@@ -20,6 +21,9 @@ export const createServer = () => {
 
     // ROUTER
     app.use("/v1", v1);
+
+    // ERROR HANDLER
+    app.use(errorHandler);
 
     return app;
 };
