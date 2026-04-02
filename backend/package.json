@@ -10,7 +10,8 @@
     "lint": "eslint",
     "prisma:generate": "prisma generate",
     "migration:create": "prisma migrate dev --create-only",
-    "migrate": "prisma migrate deploy"
+    "migrate": "prisma migrate deploy",
+    "db:seed": "prisma db seed"
   },
   "type": "commonjs",
   "repository": {
@@ -26,12 +27,13 @@
   "homepage": "https://github.com/bennyboy15/pern_template#readme",
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@faker-js/faker": "^10.4.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.13",
     "@types/morgan": "^1.9.9",
-    "@types/node": "^22.7.5",
+    "@types/node": "^22.19.15",
     "@types/pg": "^8.20.0",
     "dotenv": "^17.3.1",
     "dotenv-cli": "^11.0.0",
@@ -57,5 +59,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.1.14",
     "pg": "^8.20.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

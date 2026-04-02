@@ -3,7 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 import config from "./config";
 import v1 from "./routes/v1";
-import errorHandler from "./middlware/error-handler";
+import errorHandler from "./middleware/error-handler";
 
 export const createServer = () => {
     const app = express();
