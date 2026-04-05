@@ -5,7 +5,8 @@ const config = {
     jwtSecret: process.env.JWT_SECRET || "",
     appName: process.env.APP_NAME || "",
     issueBaseUrl: process.env.ISSUER_BASE_URL || "",
-    audience: process.env.AUDIENCE || ""
+    audience: process.env.AUDIENCE || "",
+    logLevel: process.env.LOG_LEVEL || "info"
 };
 
 export default config;

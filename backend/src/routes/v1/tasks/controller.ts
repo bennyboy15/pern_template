@@ -1,9 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import EntityNotFoundError from "../../../errors/EntityNotFound";
 import { prisma } from "../../../prisma-client";
+import logger from "../../../logger";
 
 export async function listTasks(req: Request, res: Response, next: NextFunction) {
     try {
+        logger.info("Requesting Tasks");
+        logger.child({logMetadata: `User: ${req.auth?.payload.sub}`})
         const tasks = await prisma.task.findMany({
             where: {
                 user_id: req.auth?.payload.sub
