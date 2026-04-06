@@ -6,7 +6,7 @@ import logger from "../../../logger";
 export async function listTasks(req: Request, res: Response, next: NextFunction) {
     try {
         logger.info("Requesting Tasks");
-        logger.child({logMetadata: `User: ${req.auth?.payload.sub}`})
+        logger.child({ logMetadata: `User: ${req.auth?.payload.sub}` })
         const tasks = await prisma.task.findMany({
             where: {
                 user_id: req.auth?.payload.sub
@@ -32,3 +32,31 @@ export async function getTask(req: Request, res: Response, next: NextFunction) {
         throw new EntityNotFoundError({ message: "Entity not found", statusCode: 404, code: "ERR_NF" });
     }
 };
+
+export async function createTask(req: Request, res: Response, next: NextFunction) {
+    try {
+        const task = await prisma.task.create({
+            data: {
+                user_id: req.auth?.payload.sub as string,
+                ...req.body
+            }
+        });
+        return res.status(201).json({ task });
+    } catch (error) {
+        throw new Error("Error when creating task")
+    }
+}
+
+export async function updateTask(req: Request, res: Response, next: NextFunction) {
+    try {
+        const task = await prisma.task.update({
+            where: {id: req.params.id as string},
+            data: {
+                ...req.body // alrady validated at middleware called before this function on route
+            }
+        });
+        return res.status(200).json({ task });
+    } catch (error) {
+        throw new Error("Error when updating task")
+    }
+}
