@@ -20,6 +20,14 @@ async function main() {
             },
         });
 
+        await prisma.user.create({
+            data: {
+                name: faker.person.fullName(),
+                email: faker.internet.email(),
+                password: faker.internet.password(),
+            },
+        })
+
         for (let i = 1; i <= 2; i++) {
             await prisma.task.create({
                 data: {
