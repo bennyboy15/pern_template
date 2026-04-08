@@ -17,18 +17,18 @@ export default function errorHandler(
     }
 
     if (Joi.isError(error)) {
-    const validationError: ValidationError = {
-      error: {
-        message: "Validation error",
-        code: "ERR_VALID",
-        errors: error.details.map((item) => ({
-          message: item.message,
-        })),
-      },
-    };
-    res.status(422).json(validationError);
-    return;
-  }
+        const validationError: ValidationError = {
+            error: {
+                message: "Validation error",
+                code: "ERR_VALID",
+                errors: error.details.map((item) => ({
+                    message: item.message,
+                })),
+            },
+        };
+        res.status(422).json(validationError);
+        return;
+    }
 
     if (error instanceof CustomError) {
         res.status(error.statusCode).json({
